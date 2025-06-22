@@ -23,4 +23,6 @@ app.get('/', (req, res) => {
     res.send("Welcome to the API");
 })
 
+// app.get('/api/user', userRoures)
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

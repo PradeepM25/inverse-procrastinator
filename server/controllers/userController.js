@@ -7,7 +7,7 @@ const JWT_SECRETE = process.env.JWT_SECRETE || 'your_jwt_secrete_here';
 const TOKEN_EXPIRES = '24h';
 
 const createToken = (userId) => {
-    jwt.sign({id: userId}, JWT_SECRETE, {expiresIn: TOKEN_EXPIRES})
+    return jwt.sign({id: userId}, JWT_SECRETE, {expiresIn: TOKEN_EXPIRES})
 };
 
 // register function
@@ -31,6 +31,7 @@ export async function registerUser(req, res) {
         }
         const hashed = await bcrypt.hash(password, 10);
         const newUser = await new User({name, email: email.toLowerCase(), password: hashed});
+        await newUser.save();
         const token = createToken(newUser._id);
         res.status(201).json({success: true, token, user: {id: newUser._id, name: newUser.name, email: newUser.email}});
     } 
@@ -53,11 +54,11 @@ export async function loginUser(req, res) {
     try {
         const user = await User.findOne({email: email.toLowerCase()});
         if(!user) {
-            return res.status(401).json({success: false, message: 'Invalid email or password'});
+            return res.status(401).json({success: false, message: 'There is no user with this email'});
         }
         const match = await bcrypt.compare(password, user.password);
         if(!match) {
-            return res.status(401).json({success: false, message: 'Invalid email or password'});
+            return res.status(401).json({success: false, message: 'Invalid password'});
         }
         const token = createToken(user._id);
         res.status(200).json({success: true, token, user: {id: user._id, name: user.name, email: user.email}});

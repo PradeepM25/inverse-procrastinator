@@ -6,7 +6,7 @@ const JWT_SECRETE = process.env.JWT_SECRETE || 'your_jwt_secrete_here';
 
 export default async function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
-    if(!authHeader || !authHeader.startswith('Bearer ')) {
+    if(!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({success: false, message: 'Unauthorized access'});
     }
     const token = authHeader.split(' ')[1];

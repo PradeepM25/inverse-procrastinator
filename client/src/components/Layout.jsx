@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useState, useCallback, useEffect, useMemo } from 'react';
-import { Circle, Clock, TreadingUp, Zap } from 'lucide-react';
+import { Circle, Clock, TrendingUp, Zap } from 'lucide-react';
 import axios from 'axios';
 
 export const Layout = ({ onLogout, user }) => {
@@ -115,7 +115,7 @@ export const Layout = ({ onLogout, user }) => {
                     <div className='xl:col-span-1 space-y-4 sm:space-y-6'>
                         <div className='bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100'>
                             <h3 className='text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2'>
-                                <TreadingUp className='w-4 h-4 sm:h-5 sm:w-5 text-purple-500' />
+                                <TrendingUp className='w-4 h-4 sm:h-5 sm:w-5 text-purple-500' />
                                 Task Statistic 
                             </h3>
                             <div className='grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6'>
@@ -150,7 +150,7 @@ export const Layout = ({ onLogout, user }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className='bf-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100'>
+                        <div className='bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100'>
                             <h3 className='text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2'>
                                 <Clock className='w-4 h-4 sm:w-5 sm:h-5 text-purple-500' />     
                                 Recent Activity                       
@@ -197,4 +197,3 @@ export const Layout = ({ onLogout, user }) => {
     )
 };
 
-//2:17:51

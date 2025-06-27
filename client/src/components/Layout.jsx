@@ -44,14 +44,16 @@ export const Layout = ({ onLogout, user }) => {
     useEffect(() => { fetchTasks(); }, [fetchTasks]);
 
     const stats = useMemo(() => {
-        const completedTasks = tasks.filter(t => {
+        const completedTasks = tasks.filter(t =>
             t.completed === true || t.completed === 1 ||
-            (typeof t.completed === 'string' && t.completed.toLowerCase() === 'yes');
-        }).length;
+            (typeof t.completed === 'string' && t.completed.toLowerCase() === 'yes')
+        ).length;
+
         const totalTasks = tasks.length;
         const pendingTasks = totalTasks - completedTasks;
-        const completionPercentage = totalTasks > 0 ? 
+        const completionPercentage = totalTasks > 0 ?
             Math.round((completedTasks / totalTasks) * 100) : 0;
+
         return {
             completedTasks,
             totalTasks,
@@ -59,8 +61,8 @@ export const Layout = ({ onLogout, user }) => {
             completionPercentage
         };
     }, [tasks]);
-
-    const StatCard = ({title, value, icon}) => {
+    
+   const StatCard = ({ title, value, icon }) => (
         <div className='p-2 sm:p-3 rounded-xl bg-white shadow-sm border border-purple-100 hover:shadow-md 
         transition-all duration-300 hover:border-purple-100 group'> 
             <div className='flex items-center gap-2'>
@@ -69,7 +71,7 @@ export const Layout = ({ onLogout, user }) => {
                     {icon}
                 </div>
                 <div className='min-w-0'>
-                    <p className='text-lg sm:text-xl font-bold bg-gradient-r from-fuchsia-500 to-purple-600
+                    <p className='text-lg sm:text-xl font-bold bg-gradient-to-r from-fuchsia-500 to-purple-600
                     bg-clip-text text-transparent'>
                         {value}
                     </p>
@@ -79,7 +81,8 @@ export const Layout = ({ onLogout, user }) => {
                 </div>
             </div>
         </div>
-    }
+    );
+
 
     if(loading) {
         return (
@@ -174,7 +177,7 @@ export const Layout = ({ onLogout, user }) => {
                                         </span>
                                     </div>
                                 ))}
-                                {task.length === 0 && (
+                                {tasks.length === 0 && (
                                     <div className='text-center py-4 sm:py-6 px-2 '>
                                         <div className='w-12 h-12 sm:w-16sm:h-16 mx-auto sm:mb-4 rounded-full bg-purple-100 flex items-center
                                         justify-center '>

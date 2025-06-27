@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, Route, useNavigate, Routes } from 'react-router-dom';
+import { Outlet, Route, useNavigate, Routes, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout.jsx';
 import { Login } from './components/Login';
 import { SignUp } from './components/SignUp';
+import Dashboard from './pages/Dashboard.jsx';
 
 const App = () => {
 
@@ -37,11 +38,11 @@ const App = () => {
     navigate('/login', { replace: true });
   }
 
-  const protectedLayout = () => {
+  const ProtectedLayout = () => (
     <Layout user={currentUser} onLogout={handleLogout}>
       <Outlet />
     </Layout>
-  }
+  )
   return (
     <Routes>
       <Route path="/login" element={
@@ -56,11 +57,14 @@ const App = () => {
         </div>
         }
       />
-      <Route path="/" element={<Layout />} />
+
+      <Route element={currentUser ? <ProtectedLayout /> : <Navigate to='/login' replace/>} >
+        <Route path="/" element={<Dashboard />} />
+      </Route>
+      
     </Routes>
   )
 }
 
 export default App
 
-// 149

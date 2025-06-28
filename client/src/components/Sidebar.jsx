@@ -3,7 +3,7 @@ import { LINK_CLASSES, menuItems, PRODUCTIVITY_CARD, SIDEBAR_CLASSES, TIP_CARD }
 import { Lightbulb, Menu, Sparkles, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom'
 
-const Sidebar = (user, tasks) => {
+const Sidebar = ({user, tasks}) => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showModel, setShowModel] = useState(false);
@@ -26,7 +26,7 @@ const Sidebar = (user, tasks) => {
             isMobile ? "justify-start" : "lg:justify-start"
           ].join(" ")} onClick={() => setMobileOpen(false)}>
             <span className={LINK_CLASSES.icon}>{icon}</span>
-            <span className={` ${isMobile ? "block" : "hidden lg:block"} ${LINK_CLASSES}`}>
+            <span className={` ${isMobile ? "block" : "hidden lg:block"} ${LINK_CLASSES.text}`}>
               {text}
             </span>
           </NavLink>

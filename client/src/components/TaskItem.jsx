@@ -146,5 +146,3 @@ export const TaskItem = ({ task, onRefresh, onLogout, showCompleteCheckBox = tru
     </>
   );
 };
-
-// 435

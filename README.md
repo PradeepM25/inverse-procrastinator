@@ -28,9 +28,6 @@
 - MongoDB (with Mongoose ODM)
 - JWT for authentication
 - bcrypt for password hashing
-
----
-
 ---
 
 ## ⚙️ Installation & Setup

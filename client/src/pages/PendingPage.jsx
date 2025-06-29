@@ -5,8 +5,6 @@ import { useOutletContext } from 'react-router-dom'
 import { TaskItem } from '../components/TaskItem'
 import { TaskModal } from '../components/TaskModal'
 
-const API_BASE = `http://localhost:4000/api/tasks`
-
 const PendingPage = () => {
 
   const { tasks = [], refreshTasks } = useOutletContext();
@@ -14,12 +12,6 @@ const PendingPage = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-
-  const getHeader = () => {
-    const token = localStorage.getItem('token');
-    if (!token) throw new Error("No Auth Token found");
-    return {'Content-type': 'application/json' ,Authorization: `Bearer ${token}` };
-  };
 
   const sortedPendigTasks = useMemo(() => {
     const filtered = tasks.filter(t => !t.completed || (typeof t.completed === 'string' && t.completed.toLowerCase() === 'no'));

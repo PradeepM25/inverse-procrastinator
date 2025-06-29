@@ -12,6 +12,17 @@ const Navbar = ({ user={}, onLogout }) => {
         setMenuOpen(false);
         onLogout();
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if(menuref.current && !menuref.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [])
+
   return (
     <header className='sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm 
     border-b border-gray-200 font-sans'>
@@ -30,7 +41,7 @@ const Navbar = ({ user={}, onLogout }) => {
                 {/* Brand Name */}
                 <span className='text-2xl font-extrabold bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500
                 bg-clip-text text-transparent tracking-wide'>
-                    TaskProcrastinator
+                    Inverse Procrastinator
                 </span>
             </div>
 

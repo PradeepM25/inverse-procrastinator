@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import 'dotenv/config'
 
 export const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://Pradeep:119131Pradeep@cluster0.sckuy.mongodb.net/Task_Manager?retryWrites=true&w=majority')
+    await mongoose.connect(process.env.MONGO_URI)
         .then(() => console.log("Connected to Task_Manager successfully"))
 }

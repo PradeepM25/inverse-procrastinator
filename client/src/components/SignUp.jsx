@@ -3,7 +3,7 @@ import axios from 'axios';
 import { UserPlus } from 'lucide-react';
 import { BUTTONCLASSES, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS, FIELDS } from '../assets/dummy';
 
-const API_URL = "http://localhost:4000";
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const INITIAL_FORM = { name: "", email: "", password: "" };
 
 export const SignUp = ({ onSwitchMode }) => {
